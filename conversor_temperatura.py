@@ -4,20 +4,37 @@ Conversor de temperatura by Gabriel Lima
 """
 
 print("Bem-vindo ao conversor de temperatura em Python! ")
-print("Deseja converter uma nova temperatura?")
-new_temp = int(input("SIM: Digite 1 \n"
-                     "NÃO: Digite 2 \n"))
 
-while new_temp < 1 or new_temp > 2:
-    print("Digite um valor válido")
+
+def inicio():
+
+    print("Deseja converter uma temperatura?")
+    new_temp = int(input("SIM: Digite 1 \n"
+                         "NÃO: Digite 2 \n"))
+    if new_temp < 1 or new_temp > 2:
+        print("Escolha um valor válido \n")
+        inicio()
+    if new_temp == 2:
+        exit()
+    if new_temp == 1:
+        escala_conversao()
+
+
+def inicio2():
+
     print("Deseja converter uma nova temperatura?")
     new_temp = int(input("SIM: Digite 1 \n"
                          "NÃO: Digite 2 \n"))
+    if new_temp < 1 or new_temp > 2:
+        print("Escolha um valor válido \n")
+        inicio()
+    if new_temp == 2:
+        exit()
+    if new_temp == 1:
+        escala_conversao()
 
-if new_temp == 2:
-    exit()
 
-while new_temp == 1:
+def escala_conversao():
 
     esc1 = int(input("Qual escala deseja converter?: \n"
                      "Celsius: Digite 1 \n"
@@ -54,52 +71,72 @@ while new_temp == 1:
                          "Kelvin: Digite 2 \n"
                          "Fahrenheit: Digite 3 \n"
                          "Encerrar Programa: Digite 4 \n"))
+        if esc2 == 4:
+            exit()
 
     if esc1 == esc2:
         print('A escala é a mesma, não há conversão')
+        inicio()
+    if esc1 == 1 and esc2 == 2:
+        celsius_kelvin()
+    if esc1 == 1 and esc2 == 3:
+        celsius_fahrenheit()
+    if esc1 == 2 and esc2 == 1:
+        kelvin_celsius()
+    if esc1 == 2 and esc2 == 3:
+        kelvin_fahrenheit()
+    if esc1 == 3 and esc2 == 1:
+        fahrenheit_celsius()
+    if esc1 == 3 and esc2 == 2:
+        fahrenheit_kelvin()
 
-    # Celsius para Kelvin
-    elif esc1 == 1 and esc2 == 2:
-        celsius_temp = float(input('Qual a temperatura em grau Celsius?: '))
-        kelvin_temp = celsius_temp + 273.15
-        print(f'A temperatura de {celsius_temp} grau Celsius é de {kelvin_temp} Kelvin \n')
 
-    # Celsius para Fahrenheit
-    elif esc1 == 1 and esc2 == 3:
-        celsius_temp = float(input('Qual a temperatura em grau Celsius?: '))
-        fah_temp = (celsius_temp * (9 / 5) + 32)
-        print(f'A temperatura de {celsius_temp} grau Celsius é de {fah_temp} Grau Fahrenheit \n')
+# converter celsius para kelvin
+def celsius_kelvin():
+    celsius_temp = float(input('Qual a temperatura em grau Celsius?: '))
+    kelvin_temp = celsius_temp + 273.15
+    print(f'A temperatura de {celsius_temp} grau Celsius é de {kelvin_temp} Kelvin \n')
+    inicio2()
 
-    # Kelvin para Celsius
-    elif esc1 == 2 and esc2 == 1:
-        kelvin_temp = float(input('Qual a temperatura em Kelvin?: '))
-        celsius_temp = kelvin_temp - 273.15
-        print(f'A temperatura de {kelvin_temp} grau Kelvin é de {celsius_temp} Grau Celsius \n')
 
-    # Kelvin para Fahrenheit
-    elif esc1 == 2 and esc2 == 3:
-        kelvin_temp = float(input('Qual a temperatura em Kelvin?: '))
-        fah_temp = ((kelvin_temp - 273.15) * 1.8) + 32
-        print(f'A temperatura de {kelvin_temp} grau Kelvin é de {fah_temp} Grau Fahrenheit \n')
+# converter celsius para fahrenheit
+def celsius_fahrenheit():
+    celsius_temp = float(input('Qual a temperatura em grau Celsius?: '))
+    fah_temp = (celsius_temp * (9 / 5) + 32)
+    print(f'A temperatura de {celsius_temp} grau Celsius é de {fah_temp} Grau Fahrenheit \n')
+    inicio2()
 
-    # Fahrenheit para Celsius
-    elif esc1 == 3 and esc2 == 1:
-        fah_temp = float(input('Qual a temperatura em grau Fahrenheit?: '))
-        celsius_temp = (5 * (fah_temp - 32) / 9)
-        print(f'A temperatura de {fah_temp} grau Fahrenheit é de {celsius_temp} Grau Celsius \n')
 
-    # Fahrenheit para Kelvin
-    elif esc1 == 3 and esc2 == 2:
-        fah_temp = float(input('Qual a temperatura em grau Fahrenheit?: '))
-        kelvin_temp = (fah_temp-32)*5/9+273
-        print(f'A temperatura de {fah_temp} grau Fahrenheit é de {kelvin_temp} Kelvin \n')
+# converter kelvin para celsius
+def kelvin_celsius():
+    kelvin_temp = float(input('Qual a temperatura em Kelvin?: '))
+    celsius_temp = kelvin_temp - 273.15
+    print(f'A temperatura de {kelvin_temp} grau Kelvin é de {celsius_temp} Grau Celsius \n')
+    inicio2()
 
-    print("Deseja converter uma nova temperatura? ")
-    new_temp = int(input("SIM: Digite 1 \n"
-                         "NÃO: Digite 2 \n"))
 
-    while new_temp < 1 or new_temp > 2:
-        print("Digite um valor válido")
-        print("Deseja converter uma nova temperatura? ")
-        new_temp = int(input("SIM: Digite 1 \n"
-                             "NÃO: Digite 2 \n"))
+# converter kelvin para fahrenheit
+def kelvin_fahrenheit():
+    kelvin_temp = float(input('Qual a temperatura em Kelvin?: '))
+    fah_temp = ((kelvin_temp - 273.15) * 1.8) + 32
+    print(f'A temperatura de {kelvin_temp} grau Kelvin é de {fah_temp} Grau Fahrenheit \n')
+    inicio2()
+
+
+# converter fahrenheit para celsius
+def fahrenheit_celsius():
+    fah_temp = float(input('Qual a temperatura em grau Fahrenheit?: '))
+    celsius_temp = (5 * (fah_temp - 32) / 9)
+    print(f'A temperatura de {fah_temp} grau Fahrenheit é de {celsius_temp} Grau Celsius \n')
+    inicio2()
+
+
+# converter fahrenheit para kelvin
+def fahrenheit_kelvin():
+    fah_temp = float(input('Qual a temperatura em grau Fahrenheit?: '))
+    kelvin_temp = (fah_temp - 32) * 5 / 9 + 273
+    print(f'A temperatura de {fah_temp} grau Fahrenheit é de {kelvin_temp} Kelvin \n')
+    inicio2()
+
+
+inicio()
